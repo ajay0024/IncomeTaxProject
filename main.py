@@ -25,7 +25,6 @@ def treat_section_text(text, sec_num):
     final_text = final_text.replace("\n", "<br/><br/>")
     regex = fr"^.*{sec_num}\.\s"
     final_text = re.sub(regex, "", final_text, 1)
-    print(final_text)
     return final_text
 
 
@@ -33,6 +32,10 @@ def treat_section_text(text, sec_num):
 def home():
     return render_template("index.html")
 
+@app.route("/income-tax-act/<page-num>")
+def act_list():
+    sections = Section.query.filter_by(section_number=section_num).first()
+    return render_template("index.html")
 
 @app.route("/section/<section_num>")
 def section_view(section_num):
