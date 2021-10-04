@@ -11274,3 +11274,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.home-title-block{
+    background-image: url("https://images.unsplash.com/photo-1491841573634-28140fc7ced7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&crop=bottom&w=2070&h=500&blend=9915c5f7&blend-mode=screen&q=80");
+}

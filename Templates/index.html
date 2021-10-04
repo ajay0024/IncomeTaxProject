@@ -1,27 +1,13 @@
 {% extends "base.html" %}
 {% block title %}Income Tax{% endblock %}
 {% block content %}
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
         <!-- Page header with logo and tagline-->
-        <header class="py-5 bg-light border-bottom mb-4">
+        <header class="py-5 bg-light border-bottom mb-4 home-title-block">
             <div class="container">
-                <div class="text-center my-5">
-                    <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                    <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+                <div class="text-center my-5 ">
+                    <h1 class="fw-bolder">Welcome to Acts!</h1>
+                    <p class="lead mb-0">A website for professionals who want quick look at Income Tax Act.</p>
                 </div>
             </div>
         </header>
@@ -31,62 +17,19 @@
                 <!-- Blog entries-->
                 <div class="col-lg-8">
                     <!-- Featured blog post-->
+                    {%for section in sections%}
                     <div class="card mb-4">
 <!--                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
                         <div class="card-body">
-                            <div class="small text-muted">January 1, 2021</div>
-                            <h2 class="card-title">Featured Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+<!--                            <div class="small text-muted">January 1, 2021</div>-->
+                            <h2 class="card-title">Section - {{section.section_number}}</h2>
+                            <h4 class="card-title">{{section.section_title}}</h4>
+                            <p class="card-text text-secondary">{{treat_section_text(section.section_text,section.section_number)[:200]|safe}} ...</p>
+                            <a class="card-link" href="{{url_for('section_view',section_num=section.section_number)}}">Read Full Section →</a>
                         </div>
                     </div>
-                    <!-- Nested row for non-featured blog posts-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-lg-6">-->
-<!--                            &lt;!&ndash; Blog post&ndash;&gt;-->
-<!--                            <div class="card mb-4">-->
-<!--&lt;!&ndash;                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>&ndash;&gt;-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="small text-muted">January 1, 2021</div>-->
-<!--                                    <h2 class="card-title h4">Post Title</h2>-->
-<!--                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>-->
-<!--                                    <a class="btn btn-primary" href="#!">Read more →</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog post&ndash;&gt;-->
-<!--                            <div class="card mb-4">-->
-<!--                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="small text-muted">January 1, 2021</div>-->
-<!--                                    <h2 class="card-title h4">Post Title</h2>-->
-<!--                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>-->
-<!--                                    <a class="btn btn-primary" href="#!">Read more →</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-6">-->
-<!--                            &lt;!&ndash; Blog post&ndash;&gt;-->
-<!--                            <div class="card mb-4">-->
-<!--                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="small text-muted">January 1, 2021</div>-->
-<!--                                    <h2 class="card-title h4">Post Title</h2>-->
-<!--                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>-->
-<!--                                    <a class="btn btn-primary" href="#!">Read more →</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Blog post&ndash;&gt;-->
-<!--                            <div class="card mb-4">-->
-<!--                                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>-->
-<!--                                <div class="card-body">-->
-<!--                                    <div class="small text-muted">January 1, 2021</div>-->
-<!--                                    <h2 class="card-title h4">Post Title</h2>-->
-<!--                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>-->
-<!--                                    <a class="btn btn-primary" href="#!">Read more →</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    {%endfor%}
+
                     <!-- Pagination-->
                     <nav aria-label="Pagination">
                         <hr class="my-0" />

@@ -2,23 +2,7 @@
 {% block title %}Sec {{section.section_number}} - Income Tax Act{% endblock %}
 {% block content %}
 
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Page content-->
+       <!-- Page content-->
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-8">
@@ -35,10 +19,10 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+<!--                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>-->
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p>{{text|safe}}</p>
+                            <p>{{treat_section_text(section.section_text,section.section_number)|safe}}</p>
                         </section>
                     </article>
                     <!-- Comments section-->
