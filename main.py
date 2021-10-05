@@ -24,12 +24,20 @@ db.create_all()
 
 @app.context_processor
 def utility_processor():
-    def treat_section_text(text, sec_num):
+    def treat_section_text(text, sec_num, **kwargs):
         final_text = text
         #TODO Rstrip to remove trailing br if length is fixed may have to use args/kwargs. rather than striping in HTML file
         final_text = final_text.replace("\n", "<br/><br/>")
+
         regex = fr"^.*{sec_num}\.\s"
         final_text = re.sub(regex, "", final_text, 1)
+        if "chars" in kwargs:
+            final_text=final_text[:kwargs['chars']]
+        print(final_text)
+
+        regex = r"<.{0,9}$"
+        final_text = re.sub(regex, "", final_text)
+        print(final_text)
         return final_text
 
     return dict(treat_section_text=treat_section_text)
@@ -45,7 +53,7 @@ def utility_processor():
 
 @app.route("/")
 def home():
-    return redirect(url_for("act_list", page_num=1))
+    return redirect(url_for("act_list", page=1))
     return render_template("index.html")
 
 
