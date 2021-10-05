@@ -1,6 +1,7 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
+import markupsafe
 import re
 
 app = Flask(__name__)
@@ -9,6 +10,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+ROWS_PER_PAGE=10
 
 class Section(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +26,7 @@ db.create_all()
 def utility_processor():
     def treat_section_text(text, sec_num):
         final_text = text
+        #TODO Rstrip to remove trailing br if length is fixed may have to use args/kwargs. rather than striping in HTML file
         final_text = final_text.replace("\n", "<br/><br/>")
         regex = fr"^.*{sec_num}\.\s"
         final_text = re.sub(regex, "", final_text, 1)
@@ -46,9 +49,10 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/income-tax-act/<page_num>")
-def act_list(page_num):
-    sections = Section.query.filter(Section.id < 10).all()
+@app.route("/income-tax-act")
+def act_list():
+    page = request.args.get('page', 1, type=int)
+    sections = Section.query.paginate(page=page, per_page=ROWS_PER_PAGE)
     return render_template("index.html", sections=sections)
 
 
